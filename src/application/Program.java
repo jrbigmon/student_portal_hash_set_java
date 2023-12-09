@@ -43,8 +43,19 @@ public class Program {
                                         teacherToClassroom[1]);
                 }
 
-                System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("1"));
-                System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("2"));
-                System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("3"));
+                System.out.println("Students quantity by teacher id (1): \n"
+                                + portalService.getAllStudentsByTeacherId("1"));
+
+                System.out.println();
+
+                System.out.println("Students quantity by teacher id (2): \n"
+                                + portalService.getAllStudentsByTeacherId("2"));
+
+                System.out.println();
+
+                System.out.println("Students quantity by teacher id (3): \n"
+                                + portalService.getAllStudentsByTeacherId("3"));
+
+                System.out.println();
         }
 }
