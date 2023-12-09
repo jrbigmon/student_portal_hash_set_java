@@ -12,39 +12,39 @@ import models.services.PortalService;
 
 public class Program {
 
-  public static void main(String[] args) throws Exception {
-    IPortalReadCsvs portalReadCsvs = new PortalReadCsvs();
+    public static void main(String[] args) throws Exception {
+        IPortalReadCsvs portalReadCsvs = new PortalReadCsvs();
 
-    List<Student> students = portalReadCsvs.readFileStudents(
-        "/home/junior/MyProjects/java-study/student_portal/student_portal_with_set_files/students.csv");
+        List<Student> students = portalReadCsvs.readFileStudents(
+                "students.csv");
 
-    List<Classroom> classrooms = portalReadCsvs.readFileClassrooms(
-        "/home/junior/MyProjects/java-study/student_portal/student_portal_with_set_files/classrooms.csv");
+        List<Classroom> classrooms = portalReadCsvs.readFileClassrooms(
+                "classrooms.csv");
 
-    List<Teacher> teachers = portalReadCsvs.readFileTeachers(
-        "/home/junior/MyProjects/java-study/student_portal/student_portal_with_set_files/teachers.csv");
+        List<Teacher> teachers = portalReadCsvs.readFileTeachers(
+                "teachers.csv");
 
-    List<String[]> teachersToClassrooms = portalReadCsvs.readFileTeachersToClassrooms(
-        "/home/junior/MyProjects/java-study/student_portal/student_portal_with_set_files/teachers-to-classrooms.csv");
+        List<String[]> teachersToClassrooms = portalReadCsvs.readFileTeachersToClassrooms(
+                "teachers-to-classrooms.csv");
 
-    List<String[]> classroomsToStudents = portalReadCsvs.readFileClassroomsToStudents(
-        "/home/junior/MyProjects/java-study/student_portal/student_portal_with_set_files/classrooms-to-students.csv");
+        List<String[]> classroomsToStudents = portalReadCsvs.readFileClassroomsToStudents(
+                "classrooms-to-students.csv");
 
-    IPortalService portalService = new PortalService(classrooms, students,
-        teachers);
+        IPortalService portalService = new PortalService(classrooms, students,
+                teachers);
 
-    for (String[] classroomToStudent : classroomsToStudents) {
-      portalService.associateClassroomToStudent(classroomToStudent[0],
-          classroomToStudent[1]);
+        for (String[] classroomToStudent : classroomsToStudents) {
+            portalService.associateClassroomToStudent(classroomToStudent[0],
+                    classroomToStudent[1]);
+        }
+
+        for (String[] teacherToClassroom : teachersToClassrooms) {
+            portalService.associateTeacherToClassroom(teacherToClassroom[0],
+                    teacherToClassroom[1]);
+        }
+
+        System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("1"));
+        System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("2"));
+        System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("3"));
     }
-
-    for (String[] teacherToClassroom : teachersToClassrooms) {
-      portalService.associateTeacherToClassroom(teacherToClassroom[0],
-          teacherToClassroom[1]);
-    }
-
-    System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("1"));
-    System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("2"));
-    System.out.println("Students quantity: " + portalService.getAllStudentsByTeacherId("3"));
-  }
 }
